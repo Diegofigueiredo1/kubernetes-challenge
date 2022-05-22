@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: virtapp
+  name: virtapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: virtapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: virtapp
+    spec:
+      containers:
+      - image: virt.01
+        imagePullPolicy: IfNotPresent
+        name: virt-01-42lsz
+        resources: {}
+        env:
+        - name: NAME
+          valueFrom:
+            configMapKeyRef:
+              name: virt-config
+              key: name
+
+status: {}
